@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding-top: 100px;
+    background: linear-gradient(135deg, #ffe6e6, #ffb3d1);
+    overflow: hidden;
+    height: 100vh;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 3em;
+    color: #e60073;
+    text-shadow: 2px 2px #fff;
+  }
+
+  button {
+    font-size: 1.5em;
+    padding: 15px 30px;
+    margin: 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  #yes {
+    background-color: #ff4d94;
+    color: white;
+  }
+
+  #no {
+    background-color: #999;
+    color: white;
+    position: absolute;
+  }
+
+  .heart {
+    position: absolute;
+    font-size: 24px;
+    color: #ff1a75;
+    animation: fall 5s linear infinite;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Will you be my Valentine? 💌</h1>
+<button id="yes" onclick="alert('Yay! You made my day ❤️')">Yes</button>
+<button id="no">No</button>
+
+<script>
+const noBtn = document.getElementById('no');
+
+// Make the "No" button move away when hovered
+noBtn.addEventListener('mouseenter', () => {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+});
+
+// Create falling hearts
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerText = '❤️';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
